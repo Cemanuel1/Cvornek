@@ -1,0 +1,58 @@
+﻿@using Cvornek.Business;
+@model BusinessData
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">PhoneNumber</th>
+            <th scope="col">Skills</th>
+            <th scope="col">PImage</th>
+            <th scope="col">Documents</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FormTbList)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.Skills</td>
+            <td>@item.PImage</td>
+            <td>@item.Documents </td>
+            <td ><a href="JavaScript:;" onclick="Delete(@item.Id);" class="btn btn-danger">Sil</a></td>
+
+        </tr>
+        }
+       
+    </tbody>
+</table>
+<script>
+    function Delete(ID) {
+        /* Get from elements values */
+        
+        $.ajax({
+            url: "/DashBoard/Delete",
+            type: "post",
+            data: { ID: ID },
+            cache: false,
+            success: function (response) {
+
+                alert(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    }
+</script>
+

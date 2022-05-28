@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<form>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Adı</label>
+        <input type="text" class="form-control" id="Name" name="Name" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Soyadı</label>
+        <input type="text" class="form-control" id="Surname" name="Surname" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Telefon</label>
+        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Yetenekler</label>
+        <input type="text" class="form-control" id="Skills" name="Skills" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Resim</label>
+        <input type="file" class="form-control" id="PImage" name="PImage" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Belgeler</label>
+        <input type="file" class="form-control" id="Documents" name="Documents  " aria-describedby="emailHelp">
+
+    </div>
+    
+    <a href="JavaScript:;" class="btn btn-primary" onclick="Gonder()" >Kaydet</a>
+ 
+</form>
+
+<script>
+    function Gonder() {
+        /* Get from elements values */
+        var values = $('#ftb').serialize();
+        console.log(values);
+        var data = new FormData();
+        var files = $("#PImage").get(0).files;
+        var filesd = $("#Documents").get(0).files;
+        data.append('PImage', files[0])
+        data.append('Documents', filesd[0])
+        data.append('Name', $("#Name").val())
+        data.append('Surname', $("#Surname").val())
+        data.append('PhoneNumber', $("#PhoneNumber").val())
+        data.append('Skills', $("#Skills").val())
+
+
+
+        $.ajax({
+            url: "/Cvornek/PostData",
+            type: "post",
+            contentType: false,
+            processData: false,
+            data: data,
+            cache: false,
+            success: function (response) {
+
+                alert(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    }
+</script>
+

@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <form action="/Login/Login" method="post">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Kullıcı Adı</label>
+                <input type="text" class="form-control" id="UserName" name="UserName" aria-describedby="emailHelp">
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Şifre</label>
+                <input type="password" class="form-control" id="Password" name="Password">
+            </div>
+            <button  type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+   
+</body>x
+</html>
